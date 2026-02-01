@@ -1,8 +1,28 @@
 import { motion } from 'framer-motion';
 import { Music, Heart, Users, Award, Sparkles, Globe, Mic2, Star } from 'lucide-react';
-import AnimatedSection from './AnimatedSection';
 import './AboutDetail.css';
-import HeroBannerBg from '../../assets/Logo Section (1).png';
+import HeroBannerBg from '../../assets/LogoSection1.png';
+
+// Import Gallery Moments
+import Moment1 from '../../assets/Moments/Moment1.png';
+import Moment2 from '../../assets/Moments/Moment2.png';
+import Moment3 from '../../assets/Moments/Moment3.png';
+import Moment4 from '../../assets/Moments/Moment4.png';
+import Moment5 from '../../assets/Moments/Moment5.png';
+import Moment6 from '../../assets/Moments/Moment6.png';
+import Moment7 from '../../assets/Moments/Moment7.png';
+import Moment8 from '../../assets/Moments/Moment8.png';
+
+const moments = [
+  { img: Moment1, title: "Opening Note", subtitle: "Grand Launch" },
+  { img: Moment2, title: "Cultural Heritage", subtitle: "Live Performance" },
+  { img: Moment3, title: "Rhythmic Fusion", subtitle: "Seattle Concert" },
+  { img: Moment4, title: "Soulful Strings", subtitle: "Artist Spotlight" },
+  { img: Moment5, title: "Community Impact", subtitle: "Charity Event" },
+  { img: Moment6, title: "Stage Resonance", subtitle: "Music Festival" },
+  { img: Moment7, title: "Vocal Mastery", subtitle: "Deep Connection" },
+  { img: Moment8, title: "Digital Beats", subtitle: "Modern Fusion" }
+];
 
 const AboutDetail = () => {
   return (
@@ -105,23 +125,23 @@ const AboutDetail = () => {
 
       {/* 3. Immersive Gallery Section */}
       <section className="gallery-section">
-        <div className="container-max">
-          <div className="section-header" style={{ textAlign: 'left', marginBottom: '60px' }}>
-            <span className="label-sm" style={{ color: '#4cc9f0' }}>Moments</span>
-            <h2 className="heading-lg" style={{ color: 'white' }}>The Dhwayam <span style={{ color: '#4cc9f0' }}>Experience</span></h2>
+        <div className="container-max" style={{ position: 'relative', zIndex: 5 }}>
+          <div className="section-header" style={{ textAlign: 'left', marginBottom: '80px' }}>
+            <span className="label-sm">Portfolio of Memories</span>
+            <h2 className="heading-lg">The Dhwayam <span className="hero-dhwayam-text">Experience</span></h2>
           </div>
           <div className="gallery-grid">
-            {[1, 2, 3, 4, 5, 6].map((idx) => (
-              <div key={idx} className="gallery-image-wrapper">
+            {moments.map((moment, idx) => (
+              <div key={idx} className={`gallery-image-wrapper gallery-item-${idx}`}>
                 <img 
-                  src={`https://picsum.photos/800/1000?random=${idx + 20}`} 
-                  alt="Performance" 
+                  src={moment.img} 
+                  alt={moment.title} 
                   className="gallery-img" 
                 />
                 <div className="gallery-overlay">
-                  <div>
-                    <h4 style={{ fontWeight: 800, fontSize: '20px' }}>Stage Moment {idx}</h4>
-                    <span style={{ fontSize: '12px', opacity: 0.8 }}>Live in Seattle</span>
+                  <div className="gallery-info">
+                    <span>{moment.subtitle}</span>
+                    <h4>{moment.title}</h4>
                   </div>
                 </div>
               </div>
@@ -131,7 +151,7 @@ const AboutDetail = () => {
       </section>
 
       {/* 4. Professional Founders Section */}
-      <section className="section-padding bg-soft">
+      <section className="section-padding bg-soft team-section">
         <div className="container-max" style={{ position: 'relative' }}>
           <div className="bg-blob blob-2"></div>
           <div className="section-header" style={{ marginBottom: '80px' }}>

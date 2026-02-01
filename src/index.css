@@ -2,6 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap');
 @import "tailwindcss";
 
+:root {
+  --brand-teal: #014e63;
+  --brand-sky: #4cc9f0;
+  --brand-offwhite: #f8fafc;
+  --brand-dark: #002533;
+}
+
 .road-rage-regular {
   font-family: "Road Rage", sans-serif;
   font-weight: 400;

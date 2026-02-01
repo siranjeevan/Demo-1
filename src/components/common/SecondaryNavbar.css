@@ -1,0 +1,122 @@
+/* SecondaryNavbar.css */
+.secondary-navbar {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%) translate3d(0, -20px, 0) scale(0.5);
+    width: 20%;
+    opacity: 0;
+    max-width: 1400px;
+    z-index: 100;
+    padding: 12px 48px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 30px;
+    box-shadow: 0 10px 50px rgba(1, 78, 99, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 1.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    pointer-events: none;
+}
+
+.secondary-navbar.visible {
+    transform: translateX(-50%) translate3d(0, 0, 0) scale(1);
+    width: 95%;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.secondary-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.secondary-nav-link {
+    background: none;
+    border: none;
+    color: var(--brand-teal);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+.secondary-nav-link:hover {
+    color: var(--brand-sky);
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.secondary-nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+
+.secondary-nav-center:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+
+.secondary-nav-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.secondary-nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.secondary-nav-btn {
+    background: transparent;
+    border: 2px solid var(--brand-teal);
+    color: var(--brand-teal);
+    padding: 12px 36px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    text-transform: uppercase;
+}
+
+.secondary-nav-btn:hover {
+    background: var(--brand-teal);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(1, 78, 99, 0.25);
+}
+
+@media (max-width: 768px) {
+    .secondary-navbar {
+        padding: 10px 24px;
+    }
+    .secondary-nav-left {
+        gap: 20px;
+    }
+    .secondary-nav-link {
+        font-size: 11px;
+    }
+    .secondary-nav-logo {
+        width: 60px;
+        height: 60px;
+    }
+    .secondary-nav-btn {
+        padding: 8px 20px;
+        font-size: 11px;
+    }
+}

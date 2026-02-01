@@ -254,32 +254,74 @@
   line-height: 1.5;
 }
 
-/* --- Gallery Redesign --- */
+/* --- Gallery Redesign - Modern slate-teal Theme --- */
 .gallery-section {
-  background: #002b36;
-  padding: 120px 0;
-  color: white;
+  background: #eff6f8; /* Sophisticated Light Teal-Grey */
+  padding: 80px 0 160px; /* Reduced top padding */
+  margin-top: -40px; /* Negative margin to pull it up */
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
 }
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 240px;
+  gap: 32px;
+  position: relative;
+  z-index: 2;
 }
 
 .gallery-image-wrapper {
   position: relative;
-  aspect-ratio: 4/5;
-  border-radius: 24px;
+  border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
+  background: white;
+  box-shadow: 0 15px 35px rgba(1, 78, 99, 0.08); /* Slightly deeper shadow for contrast */
+  border: 1px solid rgba(1, 78, 99, 0.05);
+  transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+
+
+
+/* Custom Bento Layout for Gallery */
+.gallery-item-0 { grid-column: span 6; grid-row: span 2; }
+.gallery-item-1 { grid-column: span 3; grid-row: span 1; }
+.gallery-item-2 { grid-column: span 3; grid-row: span 1; }
+.gallery-item-3 { grid-column: span 3; grid-row: span 1; }
+.gallery-item-4 { grid-column: span 3; grid-row: span 1; }
+.gallery-item-5 { grid-column: span 4; grid-row: span 2; }
+.gallery-item-6 { grid-column: span 4; grid-row: span 2; }
+.gallery-item-7 { grid-column: span 4; grid-row: span 2; }
+
+@media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 300px;
+  }
+  .gallery-image-wrapper { grid-column: span 1 !important; grid-row: span 1 !important; }
+}
+
+@media (max-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gallery-image-wrapper:hover {
+  transform: scale(1.02);
+  box-shadow: 0 30px 60px rgba(1, 78, 99, 0.12);
+  z-index: 10;
 }
 
 .gallery-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .gallery-image-wrapper:hover .gallery-img {
@@ -289,19 +331,56 @@
 .gallery-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 43, 54, 0.8) 0%, transparent 50%);
+  background: linear-gradient(to top, rgba(1, 78, 99, 0.9) 0%, transparent 60%);
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.5s ease;
   display: flex;
   align-items: flex-end;
-  padding: 32px;
+  padding: 40px;
 }
 
 .gallery-image-wrapper:hover .gallery-overlay {
   opacity: 1;
 }
 
+.gallery-info h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 4px;
+  transform: translateY(20px);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gallery-image-wrapper:hover .gallery-info h4 {
+  transform: translateY(0);
+}
+
+.gallery-info span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4cc9f0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.1s;
+}
+
+.gallery-image-wrapper:hover .gallery-info span {
+  opacity: 1;
+}
+
+
 /* --- Founders Section --- */
+.team-section {
+  padding-top: 60px !important;
+  margin-top: -80px;
+  position: relative;
+  z-index: 5;
+}
+
 .team-item {
   text-align: center;
 }
@@ -357,8 +436,10 @@
 /* --- Modern Crew Redesign --- */
 .crew-section {
   background: linear-gradient(to bottom, #f8fafc 0%, #014e63 100%);
-  padding: 140px 0;
+  padding: 80px 0 60px; /* Reduced top and bottom padding */
+  margin-top: -80px; /* Shifted up */
   position: relative;
+  z-index: 5;
   overflow: hidden;
 }
 

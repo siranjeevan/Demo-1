@@ -8,6 +8,9 @@ import './index.css' // Ensure tailwind is loaded via index.css
 import HeroSection from './components/herosection/HeroSection'
 import About from './components/aboutpage/About'
 import AboutDetail from './components/aboutpage/AboutDetail'
+import InitiativesDetail from './components/aboutpage/InitiativesDetail'
+import ImpactDetail from './components/aboutpage/ImpactDetail'
+import EventsDetail from './components/aboutpage/EventsDetail'
 import SecondaryNavbar from './components/common/SecondaryNavbar'
 
 import Hero1 from './assets/Hero1.png'
@@ -100,7 +103,9 @@ function App() {
 
         {/* Standalone Pages */}
         {currentPage === 2 && <WhoWeAre isActive={true} />}
-        {currentPage === 3 && <OurInitiatives isActive={true} />}
+        {currentPage === 3 && <InitiativesDetail />}
+        {currentPage === 6 && <ImpactDetail />}
+        {currentPage === 7 && <EventsDetail />}
 
         {/* Landing Dashboard View (Stacked) */}
         {currentPage === 5 && (
