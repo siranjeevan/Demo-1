@@ -2,247 +2,199 @@ import React, { useState } from 'react';
 import Logo from '../../assets/Logo Section.png'; 
 
 function Footer() {
-    const [hoveredLink, setHoveredLink] = useState(null);
-
+    
     const styles = {
-        footer: {
-            backgroundColor: '#014e63', // Brand Teal
-            color: '#ffffff',
+        footerContainer: {
+            backgroundColor: '#002533', // Deep Teal
+            color: '#fff',
             fontFamily: '"Inter", sans-serif',
-            position: 'relative',
-            overflow: 'hidden',
-            padding: '0',
-            marginTop: '0px',
-            display: 'flex',
-            flexDirection: 'column',
-        },
-
-        // --- Marquee / Big Type Section ---
-        heroCTA: {
-            padding: '120px 24px',
+            padding: '80px 24px 40px 24px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
             textAlign: 'center',
-            background: 'linear-gradient(180deg, #015f78 0%, #014e63 100%)',
             position: 'relative',
         },
-        
-        // Circular decorative lines
-        ring1: {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '600px',
-            height: '600px',
-            border: '1px solid rgba(255,255,255,0.05)',
-            borderRadius: '50%',
-            pointerEvents: 'none',
-        },
-        ring2: {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '800px',
-            height: '800px',
-            border: '1px solid rgba(255,255,255,0.03)',
-            borderRadius: '50%',
-            pointerEvents: 'none',
-        },
 
-        mainHeading: {
-            fontSize: 'clamp(48px, 8vw, 100px)',
-            fontWeight: '400', // Elegance
+        // --- 1. Central Hero Text ---
+        mainHeader: {
+            fontSize: 'clamp(40px, 8vw, 96px)', // Responsive text
+            fontWeight: '900',
             fontFamily: '"Playfair Display", serif',
-            lineHeight: '1',
+            lineHeight: '1.1',
             letterSpacing: '-2px',
-            marginBottom: '32px',
-            position: 'relative',
-            zIndex: 10,
-        },
-        subHeading: {
-            fontSize: '18px',
-            color: 'rgba(255,255,255,0.8)',
-            maxWidth: '500px',
-            marginBottom: '48px',
-            fontWeight: '300',
-            letterSpacing: '0.5px',
-            position: 'relative',
-            zIndex: 10,
+            marginBottom: '40px',
+            background: 'linear-gradient(135deg, #fff 0%, #94a3b8 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            maxWidth: '1000px',
         },
 
-        // Modern Button
-        ctaButton: {
-            padding: '24px 60px',
-            backgroundColor: '#ffffff',
-            color: '#014e63',
-            border: 'none',
+        // --- 2. Action Buttons ---
+        actionRow: {
+            display: 'flex',
+            gap: '20px',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            marginBottom: '80px',
+        },
+        primaryBtn: {
+            backgroundColor: '#0ea5e9', // Sky Blue
+            color: 'white',
+            padding: '18px 48px',
             borderRadius: '100px',
             fontSize: '16px',
             fontWeight: '700',
-            textTransform: 'uppercase',
-            letterSpacing: '2px',
+            border: 'none',
             cursor: 'pointer',
-            transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-            boxShadow: '0 20px 40px -10px rgba(0,0,0,0.2)',
-            zIndex: 10,
+            transition: 'transform 0.2s',
+            boxShadow: '0 0 40px -10px rgba(14, 165, 233, 0.4)',
         },
-
-        // --- Info Section Split ---
-        infoSection: {
-            borderTop: '1px solid rgba(255,255,255,0.1)',
-            padding: '80px 40px 40px 40px',
-            display: 'grid',
-            gridTemplateColumns: 'minmax(300px, 1fr) 2fr', // Brand Left, Links Right
-            gap: '80px',
-        },
-
-        // Brand Area
-        brandArea: {
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '30px',
-        },
-        brandLogo: {
-            width: '140px',
-            filter: 'brightness(0) invert(1)',
-        },
-        brandMission: {
-            color: 'rgba(255,255,255,0.6)',
-            lineHeight: '1.8',
-            fontSize: '15px',
-            maxWidth: '400px',
-        },
-
-        // Links Grid
-        linksGrid: {
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '40px',
-        },
-        linkColumn: {
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '24px',
-        },
-        colHeader: {
-            fontSize: '12px',
+        secondaryBtn: {
+            backgroundColor: 'transparent',
+            color: 'white',
+            padding: '18px 48px',
+            borderRadius: '100px',
+            fontSize: '16px',
             fontWeight: '700',
-            letterSpacing: '2px',
-            textTransform: 'uppercase',
-            color: '#0ea5e9', // Sky accent
-            marginBottom: '8px',
-        },
-        linkItem: (name) => ({
-            color: hoveredLink === name ? '#ffffff' : 'rgba(255,255,255,0.6)',
-            textDecoration: 'none',
-            fontSize: '15px',
-            transition: 'all 0.3s ease',
-            transform: hoveredLink === name ? 'translateX(5px)' : 'translateX(0)',
+            border: '1px solid rgba(255,255,255,0.2)',
             cursor: 'pointer',
-            display: 'inline-block',
-        }),
+            transition: 'background 0.2s',
+        },
 
-        // --- Copyright Bar ---
-        copyrightBar: {
-            padding: '40px',
-            borderTop: '1px solid rgba(255,255,255,0.05)',
+        // --- 3. Organized Links Bar ---
+        linkBar: {
+            width: '100%',
+            maxWidth: '1200px',
+            borderTop: '1px solid rgba(255,255,255,0.1)',
+            borderBottom: '1px solid rgba(255,255,255,0.1)',
+            padding: '40px 0',
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'center',
+            alignItems: 'flex-start',
+            gap: '40px',
+            flexWrap: 'wrap',
+            textAlign: 'left',
+        },
+        
+        // Col Styles
+        linkGroup: {
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '16px',
+        },
+        groupTitle: {
+            fontSize: '12px',
+            fontWeight: '700',
+            textTransform: 'uppercase',
+            letterSpacing: '2px',
+            color: '#64748b',
+            marginBottom: '8px',
+        },
+        link: {
+            color: 'white',
+            textDecoration: 'none',
+            fontSize: '15px',
+            fontWeight: '500',
+            transition: 'color 0.2s',
+            cursor: 'pointer',
+        },
+
+        // Brand Col
+        brandCol: {
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
+            maxWidth: '300px',
+        },
+
+        // --- 4. Bottom Line ---
+        bottomLine: {
+            marginTop: '40px',
+            width: '100%',
+            maxWidth: '1200px',
+            display: 'flex',
+            justifyContent: 'space-between',
             fontSize: '13px',
-            color: 'rgba(255,255,255,0.4)',
+            color: '#64748b',
         }
     };
 
-    const LinkList = ({ title, items }) => (
-        <div style={styles.linkColumn}>
-            <span style={styles.colHeader}>{title}</span>
-            <div style={{display:'flex', flexDirection:'column', gap:'16px'}}>
-                {items.map(item => (
-                    <a 
-                        key={item}
-                        style={styles.linkItem(item)}
-                        onMouseEnter={() => setHoveredLink(item)}
-                        onMouseLeave={() => setHoveredLink(null)}
-                    >
-                        {item}
-                    </a>
-                ))}
-            </div>
+    const LinkGroup = ({ title, links }) => (
+        <div style={styles.linkGroup}>
+            <span style={styles.groupTitle}>{title}</span>
+            {links.map(l => (
+                <a key={l} style={styles.link}>{l}</a>
+            ))}
         </div>
     );
 
     return (
-        <footer style={styles.footer}>
+        <footer style={styles.footerContainer}>
              <style>{`
                 @media (max-width: 900px) {
-                    .info-section {
-                        grid-template-columns: 1fr !important;
+                    .link-bar {
+                        flex-direction: column !important;
+                        align-items: center !important;
+                        text-align: center !important;
                         gap: 60px !important;
                     }
-                    .links-grid {
-                        grid-template-columns: 1fr 1fr !important;
-                    }
-                    .main-heading {
-                        font-size: 48px !important;
-                    }
-                    .copyright-bar {
+                    .bottom-line {
                         flex-direction: column;
                         gap: 20px;
                     }
+                    .brand-col {
+                        align-items: center !important;
+                    }
                 }
-                .cta-btn:hover {
-                    transform: scale(1.05) translateY(-5px);
-                    box-shadow: 0 30px 60px -15px rgba(0,0,0,0.4);
+                .btn-hover:hover {
+                    transform: scale(1.05);
                 }
             `}</style>
             
-            {/* CTA Section */}
-            <div style={styles.heroCTA}>
-                <div style={styles.ring1}></div>
-                <div style={styles.ring2}></div>
-                
-                <h2 style={styles.mainHeading} className="main-heading">
-                    Ready to Create <br/>
-                    <span style={{fontStyle:'italic', fontFamily:'"Inter", sans-serif', fontWeight:'300'}}>Impact</span> Together?
-                </h2>
-                
-                <p style={styles.subHeading}>
-                    Book Dhwayam for your next event and join us in using music as a force for positive change.
-                </p>
+            {/* BIG TYPE HERO */}
+            <h1 style={styles.mainHeader}>
+                Let’s Create Impact <br/> Through Music.
+            </h1>
 
-                <button style={styles.ctaButton} className="cta-btn">
-                    Book Us Now
+            {/* BUTTONS */}
+            <div style={styles.actionRow}>
+                <button style={styles.primaryBtn} className="btn-hover">
+                    Book Dhwayam Now
+                </button>
+                <button style={styles.secondaryBtn} className="btn-hover">
+                    View Our Impact
                 </button>
             </div>
 
-            {/* Info Section */}
-            <div style={styles.infoSection} className="info-section">
+            {/* LINKS BAR */}
+            <div style={styles.linkBar} className="link-bar">
                 
-                {/* Brand Side */}
-                <div style={styles.brandArea}>
-                    <img src={Logo} alt="Dhwayam" style={styles.brandLogo} />
-                    <p style={styles.brandMission}>
-                        A Gen Z-led Carnatic fusion band using music as a bridge between tradition and purpose, creating social impact through fundraising concerts and community outreach programs.
-                    </p>
+                {/* Brand */}
+                <div style={styles.brandCol} className="brand-col">
+                    <img src={Logo} alt="Dhwayam" style={{width:'120px', filter:'brightness(0) invert(1)'}} />
+                    <span style={{fontSize:'14px', color:'rgba(255,255,255,0.6)', lineHeight:'1.6'}}>
+                        Connecting tradition and purpose to empower communities.
+                    </span>
                 </div>
 
-                {/* Links Side */}
-                <div style={styles.linksGrid} className="links-grid">
-                    <LinkList title="Initiatives" items={['Harmony for Hope', 'Together Through Music', 'Social Welfare']} />
-                    <LinkList title="Company" items={['About Us', 'Our Impact', 'Team', 'Careers']} />
-                    <LinkList title="Connect" items={['Book Dhwayam', 'Contact Us', 'Instagram', 'LinkedIn']} />
+                <LinkGroup title="Initiatives" links={['Harmony for Hope', 'Together Through Music', 'Social Welfare']} />
+                <LinkGroup title="Connect" links={['Upcoming Events', 'Contact Us', 'Instagram', 'LinkedIn']} />
+                
+                {/* Contact Specific */}
+                <div style={styles.linkGroup}>
+                    <span style={styles.groupTitle}>Contact</span>
+                    <a href="mailto:dhwayamfoundation@gmail.com" style={{...styles.link, fontSize:'18px', fontWeight:'600'}}>
+                        dhwayamfoundation@<br/>gmail.com
+                    </a>
                 </div>
+
             </div>
 
-            {/* Footer Bottom */}
-            <div style={styles.copyrightBar} className="copyright-bar">
+            {/* BOTTOM */}
+            <div style={styles.bottomLine} className="bottom-line">
                 <span>© 2026 Dhwayam Foundation. All rights reserved.</span>
-                <span style={{color:'rgba(255,255,255,0.8)'}}>dhwayamfoundation@gmail.com</span>
+                <span>Bengaluru, India</span>
             </div>
 
         </footer>

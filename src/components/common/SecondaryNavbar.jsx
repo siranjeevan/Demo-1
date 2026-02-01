@@ -1,15 +1,20 @@
 import React from 'react';
 import Logo from '../../assets/Logo Section.png';
 
-function SecondaryNavbar({ onNavigate }) {
+function SecondaryNavbar({ onNavigate, isVisible }) {
     return (
         <nav 
             style={{
                 position: 'fixed',
                 top: '24px',
                 left: '50%',
-                transform: 'translateX(-50%)',
-                width: '90%',
+                // Animation Logic
+                transform: isVisible 
+                    ? 'translateX(-50%) translate3d(0,0,0) scale(1)' 
+                    : 'translateX(-50%) translate3d(0,-20px,0) scale(0.5)',
+                width: isVisible ? '90%' : '20%', // Expand from small center
+                opacity: isVisible ? 1 : 0,
+                
                 maxWidth: '1100px',
                 zIndex: 100,
                 padding: '10px 48px',
@@ -22,6 +27,7 @@ function SecondaryNavbar({ onNavigate }) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                transition: 'all 1.8s cubic-bezier(0.2, 0.8, 0.2, 1)', // Smooth expansion
             }}
         >
             {/* Left: Navigation Links */}
@@ -29,9 +35,6 @@ function SecondaryNavbar({ onNavigate }) {
                 {['Home', 'About', 'Who We Are', 'Initiatives', 'Contact'].map((item, index) => (
                     <button
                         key={item}
-                        onClick={() => {
-                            if (index < 4) onNavigate(index);
-                        }}
                         style={{
                             background: 'none',
                             border: 'none',
@@ -52,7 +55,6 @@ function SecondaryNavbar({ onNavigate }) {
 
             {/* Center: Brand Identity */}
             <div 
-                onClick={() => onNavigate(0)}
                 style={{
                     position: 'absolute',
                     left: '50%',

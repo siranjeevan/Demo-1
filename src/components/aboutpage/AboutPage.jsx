@@ -1,119 +1,230 @@
-import ConcertImg from '../../assets/StockCake-Silhouetted_Concert_Moment-1844489-standard.jpg'
-import BandImg from '../../assets/Hero2.png'
-import Logo from '../../assets/Logo Section.png'
-import Hero1 from '../../assets/Hero1.png'
+import { motion } from 'framer-motion';
+import { Music, Heart, Users, Award } from 'lucide-react';
+import AnimatedSection from '../components/AnimatedSection';
 
-function AboutPage({ isActive }) {
-    return (
-        <div className="w-full min-h-screen bg-[#f8fafc] flex items-center justify-center pb-20 relative" style={{ paddingTop: '60px' }}>
-            
-            <div className={`w-full max-w-7xl mx-auto flex flex-col gap-8 px-6 md:px-12 pointer-events-auto transition-all duration-1000 ease-out transform ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-                
-                {/* 0. Common Page Header - Elegant & Clear */}
-                <div className="flex flex-col items-center justify-center text-center relative py-2 shrink-0">
-                    <div className="absolute top-1/2 left-0 w-full h-[1px] bg-[#014e63]/5 -z-10"></div>
-                    <div className="bg-[#f8fafc] px-6 flex flex-col items-center">
-                        <span className="text-[#014e63]/40 text-[10px] font-black tracking-[0.6em] uppercase mb-1">The Collective</span>
-                        <h1 className="text-[#014e63] text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-1">
-                            Dhwayam
-                        </h1>
-                        <div className="flex items-center gap-3">
-                            <span className="w-6 h-[1px] bg-[#014e63]/20"></span>
-                            <span className="text-[#014e63]/40 text-[9px] font-bold tracking-widest uppercase">Est. 2024</span>
-                            <span className="w-6 h-[1px] bg-[#014e63]/20"></span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* 2. Main Bento Grid - Flexible Height */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 flex-1 min-h-0">
-                    
-                    {/* 1. Left Block - Full Height Story Card */}
-                    <div className="md:col-span-6 min-h-0 h-full">
-                        {/* Story Card */}
-                        <div className="bg-white rounded-[2rem] p-10 md:p-12 shadow-xl h-full flex flex-col justify-center relative overflow-hidden group border border-[#014e63]/10">
-                            {/* Decorative background element */}
-                            <div 
-                                className="absolute -top-20 -left-20 w-64 h-64 bg-[#014e63]/5 rounded-full blur-3xl group-hover:bg-[#014e63]/10 transition-all duration-700"
-                            ></div>
-                            
-                            <div className="flex flex-col items-center text-center gap-6 md:gap-8 relative z-10">
-                                {/* Centered Header */}
-                                <div className="flex flex-col items-center gap-3 md:gap-4">
-                                    <span className="text-[#014e63]/60 text-xs font-bold tracking-widest uppercase block">We Are</span>
-                                    <h3 className="text-[#014e63] text-5xl md:text-6xl font-black uppercase tracking-tighter leading-none text-center">
-                                        The <span className="text-[#0284c7] text-2xl md:text-5xl font-bold tracking-widest ml-2 uppercase">New Wave</span>
-                                    </h3>
-                                    <div className="mt-1">
-                                        <span className="bg-transparent border-2 border-[#014e63] text-[#014e63] px-5 py-2 rounded-full text-[12px] font-black tracking-widest uppercase">GEN-Z</span>
-                                    </div>
-                                </div>
-
-                                {/* Centered Divider */}
-                                <div className="w-24 h-1.5 bg-[#014e63]/10 rounded-full"></div>
-
-                                {/* Centered Text Content */}
-                                <div className="flex flex-col gap-4 md:gap-6 max-w-xl px-4">
-                                    <p className="text-[#014e63] text-sm md:text-base lg:text-lg leading-relaxed font-bold text-center">
-                                        As a Gen Z–led Carnatic fusion band, we reimagine classical Carnatic music through contemporary sound, creating experiences that connect generations while driving meaningful social change.
-                                    </p>
-                                    <p className="text-[#014e63]/80 text-[11px] md:text-sm lg:text-base leading-relaxed text-center font-medium">
-                                        Through our initiatives <span className="font-bold text-[#014e63]">Harmony for Hope</span> (fundraising concerts) and <span className="font-bold text-[#014e63]">Together Through Music</span> (community outreach), we blend deep Carnatic roots with modern musical expression to uplift communities, support youth healthcare, and spread connection.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* 2. Right Block */}
-                    <div className="md:col-span-6 grid grid-rows-2 gap-5 md:gap-6 min-h-0 h-full">
-                        
-                        {/* Top: Mission Statement (Hero Card) */}
-                        <div className="bg-gradient-to-br from-[#014e63] to-[#003847] rounded-[2rem] p-10 md:p-12 flex flex-col justify-center items-center text-center relative overflow-hidden shadow-xl border border-white/5">
-                            {/* Subtle glow */}
-                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-white/5 blur-3xl rounded-full opacity-20 pointer-events-none"></div>
-
-                            <div className="relative z-10 flex flex-col items-center gap-4 md:gap-6">
-                                <span className="text-[#4cc9f0] text-[10px] font-bold tracking-[0.4em] uppercase py-1 px-3 border border-[#4cc9f0]/30 rounded-full">Mission</span>
-
-                                <h2 className="text-white text-xl md:text-3xl lg:text-4xl font-medium leading-relaxed">
-                                    "To use music as a <span className="text-[#4cc9f0] font-bold">bridge</span> between tradition and purpose, transforming performance into <span className="text-[#4cc9f0] font-bold">impact</span>."
-                                </h2>
-                                
-                                <div className="w-12 h-1 bg-[#4cc9f0]/20 rounded-full mt-2"></div>
-                            </div>
-                        </div>
-
-                        {/* Bottom Split: Photos Only */}
-                        <div className="min-h-0 h-full">
-                            {/* Photo Mosiac - Two Large Images */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
-                                 <div 
-                                     className="bg-gray-800 rounded-[1.5rem] relative overflow-hidden group bg-cover bg-center shadow-lg h-full"
-                                     style={{ backgroundImage: `url(${Hero1})` }}
-                                 >
-                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
-                                    <div className="absolute inset-0 flex items-center justify-center text-white/90 text-sm font-black uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 text-center px-4">The Moment</div>
-                                 </div>
-                                 
-                                 <div className="bg-[#014e63] rounded-[1.5rem] relative overflow-hidden group shadow-lg border border-white/5 h-full">
-                                    <div 
-                                        className="absolute inset-0 bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity duration-700 h-full" 
-                                        style={{ backgroundImage: `url(${BandImg})` }}
-                                    ></div>
-                                    <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-white/10 rounded-full blur-3xl group-hover:bg-[#4cc9f0]/20 transition-all duration-700"></div>
-                                    <div className="absolute inset-0 flex items-center justify-center text-white/90 text-sm font-black uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 relative z-10 text-center px-4">The Band</div>
-                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
+const About = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="pt-20"
+    >
+      {/* Hero Section */}
+      <section className="section-padding" style={{ background: 'linear-gradient(to bottom right, #1F3A34, rgba(31, 58, 52, 0.9), rgba(31, 58, 52, 0.8))', color: '#F4F8F9' }}>
+        <div className="container-max">
+          <AnimatedSection>
+            <div className="text-center mb-16">
+              <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6">
+                About <span style={{ background: 'linear-gradient(to right, rgba(244, 248, 249, 0.9), #F4F8F9)', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent', color: 'transparent' }}>Dhwayam</span>
+              </h1>
+              <p className="text-xl md:text-2xl max-w-3xl mx-auto" style={{ color: 'rgba(244, 248, 249, 0.9)' }}>
+                Where tradition meets purpose, and music becomes a catalyst for meaningful change
+              </p>
             </div>
-            
+          </AnimatedSection>
         </div>
-    )
-}
+      </section>
 
-export default AboutPage
+      {/* Mission Statement */}
+      <section className="section-padding" style={{ backgroundColor: '#F4F8F9' }}>
+        <div className="container-max">
+          <AnimatedSection>
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="flex justify-center mb-6">
+                <Music style={{ color: '#1F3A34' }} size={48} />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-8" style={{ color: '#1F3A34' }}>
+                Our <span className="gradient-text">Mission</span>
+              </h2>
+              <p className="text-xl leading-relaxed mb-8" style={{ color: 'rgba(31, 58, 52, 0.8)' }}>
+                At Dhwayam, we believe music is more than entertainment—it's a bridge that connects 
+                hearts, cultures, and communities. We use the timeless beauty of Carnatic music, 
+                fused with contemporary elements, as a powerful tool for social impact. Every 
+                performance we give is an opportunity to raise funds, awareness, and hope for 
+                causes that matter.
+              </p>
+              <div className="rounded-xl p-8 border" style={{ backgroundColor: 'rgba(31, 58, 52, 0.05)', borderColor: 'rgba(31, 58, 52, 0.2)' }}>
+                <p className="text-lg font-medium italic" style={{ color: '#1F3A34' }}>
+                  "Music has the power to heal, unite, and inspire. We're here to harness that 
+                  power for the greater good, one performance at a time."
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Who We Are Story */}
+      <section className="section-padding" style={{ backgroundColor: 'rgba(31, 58, 52, 0.05)' }}>
+        <div className="container-max">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <AnimatedSection>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6" style={{ color: '#1F3A34' }}>
+                Who <span className="gradient-text">We Are</span>
+              </h2>
+              <p className="text-lg mb-6" style={{ color: 'rgba(31, 58, 52, 0.8)' }}>
+                Dhwayam was born from the shared vision of two young musicians in Seattle, 
+                deeply rooted in the rich tradition of Carnatic music yet passionate about 
+                addressing the challenges of our generation.
+              </p>
+              <p className="text-lg mb-6" style={{ color: 'rgba(31, 58, 52, 0.8)' }}>
+                As Gen Z artists, we understand the power of music to transcend boundaries 
+                and create meaningful connections. We've taken the classical foundations of 
+                Carnatic music and woven them with contemporary sounds to create something 
+                uniquely ours—music that honors our heritage while speaking to today's world.
+              </p>
+              <p className="text-lg" style={{ color: 'rgba(31, 58, 52, 0.8)' }}>
+                Our journey began with a simple question: How can we use our musical gifts 
+                to make a real difference? The answer became Dhwayam—a platform where every 
+                note played serves a greater purpose.
+              </p>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.3}>
+              <div className="rounded-xl p-8 shadow-lg border" style={{ backgroundColor: '#F4F8F9', borderColor: 'rgba(31, 58, 52, 0.2)' }}>
+                <h3 className="text-2xl font-serif font-semibold mb-6" style={{ color: '#1F3A34' }}>
+                  Our Values
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-start">
+                    <Heart style={{ color: '#1F3A34' }} className="mr-3 mt-1 flex-shrink-0" size={20} />
+                    <div>
+                      <h4 className="font-semibold mb-1" style={{ color: '#1F3A34' }}>Compassion</h4>
+                      <p style={{ color: 'rgba(31, 58, 52, 0.7)' }}>Every performance is driven by genuine care for our community</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <Users style={{ color: '#1F3A34' }} className="mr-3 mt-1 flex-shrink-0" size={20} />
+                    <div>
+                      <h4 className="font-semibold mb-1" style={{ color: '#1F3A34' }}>Unity</h4>
+                      <p style={{ color: 'rgba(31, 58, 52, 0.7)' }}>Music brings people together across all boundaries</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <Award style={{ color: '#1F3A34' }} className="mr-3 mt-1 flex-shrink-0" size={20} />
+                    <div>
+                      <h4 className="font-semibold mb-1" style={{ color: '#1F3A34' }}>Excellence</h4>
+                      <p style={{ color: 'rgba(31, 58, 52, 0.7)' }}>We strive for the highest quality in both our music and our impact</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Band Photo Gallery */}
+      <section className="section-padding" style={{ backgroundColor: '#F4F8F9' }}>
+        <div className="container-max">
+          <AnimatedSection>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4" style={{ color: '#1F3A34' }}>
+                Meet <span className="gradient-text">Dhwayam</span>
+              </h2>
+              <p className="text-xl" style={{ color: 'rgba(31, 58, 52, 0.7)' }}>
+                Capturing moments from our journey of music and impact
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((index) => (
+              <AnimatedSection key={index} delay={index * 0.1}>
+                <div className="rounded-xl aspect-square flex items-center justify-center card-hover shadow-lg border" style={{ backgroundColor: 'rgba(31, 58, 52, 0.05)', borderColor: 'rgba(31, 58, 52, 0.2)' }}>
+                  <div className="text-center">
+                    <Music style={{ color: '#1F3A34' }} className="mx-auto mb-2" size={48} />
+                    <p style={{ color: 'rgba(31, 58, 52, 0.7)' }}>Band Photo {index}</p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Founders Section */}
+      <section className="section-padding" style={{ backgroundColor: 'rgba(31, 58, 52, 0.05)' }}>
+        <div className="container-max">
+          <AnimatedSection>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4" style={{ color: '#1F3A34' }}>
+                Our <span className="gradient-text">Founders</span>
+              </h2>
+              <p className="text-xl" style={{ color: 'rgba(31, 58, 52, 0.7)' }}>
+                The visionaries behind Dhwayam's mission
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+            <AnimatedSection delay={0.2}>
+              <div className="text-center">
+                <div className="rounded-xl aspect-square mb-6 flex items-center justify-center shadow-lg border" style={{ backgroundColor: '#F4F8F9', borderColor: 'rgba(31, 58, 52, 0.2)' }}>
+                  <Music style={{ color: '#1F3A34' }} size={64} />
+                </div>
+                <h3 className="text-2xl font-serif font-semibold mb-2" style={{ color: '#1F3A34' }}>Founder Name</h3>
+                <p className="mb-4 font-medium" style={{ color: '#1F3A34' }}>Co-Founder & Lead Vocalist</p>
+                <p style={{ color: 'rgba(31, 58, 52, 0.7)' }}>
+                  Trained in Carnatic music from a young age, bringing traditional vocals 
+                  into contemporary fusion arrangements with passion for social impact.
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.4}>
+              <div className="text-center">
+                <div className="rounded-xl aspect-square mb-6 flex items-center justify-center shadow-lg border" style={{ backgroundColor: '#F4F8F9', borderColor: 'rgba(31, 58, 52, 0.2)' }}>
+                  <Music style={{ color: '#1F3A34' }} size={64} />
+                </div>
+                <h3 className="text-2xl font-serif font-semibold mb-2" style={{ color: '#1F3A34' }}>Founder Name</h3>
+                <p className="mb-4 font-medium" style={{ color: '#1F3A34' }}>Co-Founder & Instrumentalist</p>
+                <p style={{ color: 'rgba(31, 58, 52, 0.7)' }}>
+                  Multi-instrumentalist with deep roots in Carnatic tradition, creating 
+                  innovative fusion sounds that bridge classical and contemporary music.
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Advisors Section */}
+      <section className="section-padding" style={{ backgroundColor: '#F4F8F9' }}>
+        <div className="container-max">
+          <AnimatedSection>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4" style={{ color: '#1F3A34' }}>
+                Our <span className="gradient-text">Advisors</span>
+              </h2>
+              <p className="text-xl" style={{ color: 'rgba(31, 58, 52, 0.7)' }}>
+                Guided by experienced mentors in music and social impact
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((index) => (
+              <AnimatedSection key={index} delay={index * 0.2}>
+                <div className="rounded-xl p-6 text-center shadow-lg border" style={{ backgroundColor: '#F4F8F9', borderColor: 'rgba(31, 58, 52, 0.2)' }}>
+                  <div className="rounded-full w-24 h-24 mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: 'rgba(31, 58, 52, 0.05)' }}>
+                    <Users style={{ color: '#1F3A34' }} size={32} />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2" style={{ color: '#1F3A34' }}>Advisor Name</h3>
+                  <p className="mb-3 font-medium" style={{ color: '#1F3A34' }}>Music Industry Mentor</p>
+                  <p className="text-sm" style={{ color: 'rgba(31, 58, 52, 0.7)' }}>
+                    Providing guidance on musical excellence and industry best practices 
+                    for impactful performances.
+                  </p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+    </motion.div>
+  );
+};
+
+export default About;

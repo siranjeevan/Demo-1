@@ -6,8 +6,9 @@ import Footer from './components/common/Footer'
 import React, { useState, useEffect } from 'react'
 import './index.css' // Ensure tailwind is loaded via index.css
 import HeroSection from './components/herosection/HeroSection'
-import AboutPage from './components/aboutpage/AboutPage'
+import About from './components/aboutpage/About'
 import SecondaryNavbar from './components/common/SecondaryNavbar'
+import Founders from './components/aboutpage/Founders'
 
 import Hero1 from './assets/Hero1.png'
 import Hero2 from './assets/Hero2.png'
@@ -58,7 +59,7 @@ function App() {
       <div className={`transition-all duration-700 ease-in-out z-[100] ${
         currentPage !== 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}>
-        <SecondaryNavbar onNavigate={setCurrentPage} />
+        <SecondaryNavbar onNavigate={setCurrentPage} isVisible={currentPage !== 0} />
       </div>
 
       <div 
@@ -99,9 +100,10 @@ function App() {
           currentPage === 1 ? 'translate-y-0' : 'translate-y-[100vh]'
         }`}
       >
-        <AboutPage isActive={currentPage === 1} />
+        <About isActive={currentPage === 1} />
         <OurImpact isActive={currentPage === 1} />
         <WhoWeAre isActive={currentPage === 1} />
+        <Founders isActive={currentPage === 1} />
         <OurInitiatives isActive={currentPage === 1} />
         <RecentImpact isActive={currentPage === 1} />
         <Footer />

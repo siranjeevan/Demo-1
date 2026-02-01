@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 function OurImpact({ isActive }) {
     const [mounted, setMounted] = useState(false);
+    const [hasStartedAnimation, setHasStartedAnimation] = useState(false);
     const [animatedValues, setAnimatedValues] = useState([0, 0, 0, 0]);
+    
+    // We'll use a local ref to track if this specific component is in view
+    const sectionRef = useRef(null);
 
     const stats = [
         { 
@@ -47,17 +51,35 @@ function OurImpact({ isActive }) {
         },
     ];
 
+    // Intersection Observer to detect when THIS specific section is visible
     useEffect(() => {
-        if (isActive) {
-            setTimeout(() => setMounted(true), 100);
-        } else {
-            setMounted(false);
-            setAnimatedValues([0, 0, 0, 0]);
-        }
-    }, [isActive]);
+        const observer = new IntersectionObserver((entries) => {
+            const entry = entries[0];
+            if (entry.isIntersecting) {
+                setMounted(true);
+                if (!hasStartedAnimation) {
+                    setHasStartedAnimation(true);
+                }
+            } else {
+                // Optional: Reset if you want it to re-animate when scrolling back up
+                // setMounted(false); 
+                // setHasStartedAnimation(false);
+            }
+        }, { threshold: 0.3 }); // Trigger when 30% visible
 
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) observer.unobserve(sectionRef.current);
+        }
+    }, [hasStartedAnimation]);
+
+
+    // Animation Logic - Runs only when hasStartedAnimation is true
     useEffect(() => {
-        if (mounted) {
+        if (hasStartedAnimation) {
             stats.forEach((stat, index) => {
                 const duration = 2000;
                 const startTime = Date.now();
@@ -66,7 +88,7 @@ function OurImpact({ isActive }) {
                 const animate = () => {
                     const now = Date.now();
                     const progress = Math.min((now - startTime) / duration, 1);
-                    const ease = 1 - Math.pow(1 - progress, 4);
+                    const ease = 1 - Math.pow(1 - progress, 4); // EaseOutQuart
                     
                     const currentValue = Math.floor(ease * endValue);
                     
@@ -83,7 +105,7 @@ function OurImpact({ isActive }) {
                 requestAnimationFrame(animate);
             });
         }
-    }, [mounted]);
+    }, [hasStartedAnimation]);
 
     // Animation Helper
     const getAnimation = (delay) => ({
@@ -96,7 +118,7 @@ function OurImpact({ isActive }) {
         section: {
             width: '100%',
             position: 'relative',
-            backgroundColor: 'rgba(1, 78, 99, 0.1)', // Increased opacity for visibility
+            backgroundColor: 'rgba(1, 78, 99, 0.1)',
             overflow: 'hidden',
             padding: '50px 0',
             fontFamily: '"Inter", sans-serif',
@@ -117,28 +139,6 @@ function OurImpact({ isActive }) {
             alignItems: 'center',
         },
 
-        // Header Section
-        headerWrapper: {
-            textAlign: 'center',
-            marginBottom: '60px',
-        },
-        mainHeader: {
-            fontFamily: '"Playfair Display", serif',
-            fontSize: '42px',
-            fontWeight: '700',
-            color: '#014e63', // Brand Teal
-            marginBottom: '16px',
-            letterSpacing: '-0.5px',
-        },
-        subHeader: {
-            fontSize: '18px',
-            color: 'rgba(1, 78, 99, 0.7)', // Lighter Brand Teal
-            fontWeight: '400',
-            maxWidth: '600px',
-            margin: '0 auto',
-            lineHeight: '1.5',
-        },
-        
         // Grid Layout
         grid: {
             display: 'flex',
@@ -160,7 +160,7 @@ function OurImpact({ isActive }) {
         },
 
         iconWrapper: {
-            color: '#014e63', // Brand Teal
+            color: '#014e63',
             marginBottom: '24px',
             height: '48px',
             display: 'flex',
@@ -171,7 +171,7 @@ function OurImpact({ isActive }) {
         statValue: {
             fontSize: '42px',
             fontWeight: '800', 
-            color: '#014e63', // Brand Teal
+            color: '#014e63',
             marginBottom: '12px',
             fontVariantNumeric: 'tabular-nums',
             letterSpacing: '-1px',
@@ -179,13 +179,13 @@ function OurImpact({ isActive }) {
         statLabel: {
             fontSize: '16px',
             fontWeight: '500',
-            color: '#64748b', // Slate 500
+            color: '#64748b',
             lineHeight: '1.4',
         },
     };
 
     return (
-        <div style={styles.section}>
+        <div style={styles.section} ref={sectionRef}>
              <style>{`
                 @media (max-width: 900px) {
                     .impact-grid-responsive {
