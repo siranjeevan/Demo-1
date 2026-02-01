@@ -64,11 +64,7 @@ function App() {
   return (
     <>
       {/* Universal Nav */}
-      <div className={`transition-all duration-700 ease-in-out z-[100] ${
-        currentPage !== 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
-      }`}>
-        <SecondaryNavbar onNavigate={setCurrentPage} isVisible={currentPage !== 0} />
-      </div>
+      <SecondaryNavbar onNavigate={setCurrentPage} isVisible={currentPage !== 0} />
 
       <div 
         className={`w-full h-full rounded-3xl border-[0px] border-[#014e63] flex flex-col relative transition-all duration-700 ease-in-out overflow-hidden ${
