@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Road+Rage&display=swap');
+@import "tailwindcss";
+
+.road-rage-regular {
+  font-family: "Road Rage", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Custom Animation for Subtle Floating */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Base reset */
+
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: white;
+  padding: 12px;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
