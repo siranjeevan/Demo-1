@@ -26,10 +26,12 @@ function SecondaryNavbar({ onNavigate }) {
         >
             {/* Left: Navigation Links */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
-                {['Home', 'About', 'Gallery', 'Contact'].map((item, index) => (
+                {['Home', 'About', 'Who We Are', 'Initiatives', 'Contact'].map((item, index) => (
                     <button
                         key={item}
-                        onClick={() => onNavigate(index === 0 ? 0 : index === 1 ? 1 : index)}
+                        onClick={() => {
+                            if (index < 4) onNavigate(index);
+                        }}
                         style={{
                             background: 'none',
                             border: 'none',

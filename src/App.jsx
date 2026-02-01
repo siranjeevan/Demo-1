@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react'
+import OurInitiatives from './components/aboutpage/OurInitiatives'
+import WhoWeAre from './components/aboutpage/WhoWeAre'
+import React, { useState, useEffect } from 'react'
 import './index.css' // Ensure tailwind is loaded via index.css
 import HeroSection from './components/herosection/HeroSection'
 import AboutPage from './components/aboutpage/AboutPage'
@@ -8,7 +10,7 @@ import Hero1 from './assets/Hero1.png'
 import Hero2 from './assets/Hero2.png'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState(0) // 0 = Hero, 1 = About
+  const [currentPage, setCurrentPage] = useState(0) // 0 = Hero, 1 = About, 2 = Who We Are, 3 = Initiatives
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [currentHeroImage, setCurrentHeroImage] = useState(0)
   const heroImages = [Hero1, Hero2]
@@ -25,16 +27,20 @@ function App() {
     const handleWheel = (e) => {
       if (isTransitioning) return
 
-      if (e.deltaY > 0 && currentPage === 0) {
-        // Scrolling down - go to About page
-        setIsTransitioning(true)
-        setCurrentPage(1)
-        setTimeout(() => setIsTransitioning(false), 800)
-      } else if (e.deltaY < 0 && currentPage === 1) {
-        // Scrolling up - go back to Hero
-        setIsTransitioning(true)
-        setCurrentPage(0)
-        setTimeout(() => setIsTransitioning(false), 800)
+      if (e.deltaY > 0) {
+        // Scrolling down
+        if (currentPage < 3) {
+            setIsTransitioning(true)
+            setCurrentPage(prev => prev + 1)
+            setTimeout(() => setIsTransitioning(false), 800)
+        }
+      } else if (e.deltaY < 0) {
+        // Scrolling up
+        if (currentPage > 0) {
+            setIsTransitioning(true)
+            setCurrentPage(prev => prev - 1)
+            setTimeout(() => setIsTransitioning(false), 800)
+        }
       }
     }
 
@@ -53,7 +59,7 @@ function App() {
 
       <div 
         className={`w-full h-full rounded-3xl border-[0px] border-[#014e63] flex flex-col relative transition-all duration-700 ease-in-out overflow-hidden ${
-          currentPage === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+          currentPage === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none fixed inset-0'
         }`}
       >
         {/* Background Image Slideshow */}
@@ -73,13 +79,31 @@ function App() {
         </div>
       </div>
 
-      {/* About Page - Full Screen (no borders) */}
+      {/* About Page */}
       <div 
         className={`transition-all duration-700 ease-in-out ${
           currentPage === 1 ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
         <AboutPage isActive={currentPage === 1} />
+      </div>
+
+      {/* Who We Are Page */}
+      <div 
+        className={`transition-all duration-700 ease-in-out ${
+          currentPage === 2 ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <WhoWeAre isActive={currentPage === 2} />
+      </div>
+
+      {/* Our Initiatives Page */}
+      <div 
+        className={`transition-all duration-700 ease-in-out ${
+          currentPage === 3 ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <OurInitiatives isActive={currentPage === 3} />
       </div>
     </>
   )
