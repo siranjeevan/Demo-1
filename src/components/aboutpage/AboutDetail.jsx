@@ -2,67 +2,40 @@ import { motion } from 'framer-motion';
 import { Music, Heart, Users, Award, Sparkles, Globe, Mic2, Star } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import './AboutDetail.css';
-import AbstractBg from '../../assets/carnatic_fusion_abstract_1769954131400.png';
+import HeroBannerBg from '../../assets/Logo Section (1).png';
 
 const AboutDetail = () => {
   return (
     <div className="about-page-container">
-      {/* 1. Redesigned Premium Top Banner */}
-      <section className="hero-banner-v2">
-        <div className="banner-bg-wrapper">
-          <img src={AbstractBg} alt="Background" className="banner-bg-img" />
-          <div className="banner-glass-overlay"></div>
-          <div className="banner-particle-layer"></div>
-        </div>
-
-        <div className="container-max banner-inner">
-          <div className="banner-content-box">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="premium-tag"
-            >
-              <Sparkles size={14} className="mr-2" />
-              <span>ESTABLISHED TRADITION • MODERN VISION</span>
-            </motion.div>
-
-            <motion.h1 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 1 }}
-              className="banner-main-title"
-            >
-              The Essence of <br />
-              <span className="banner-highlight">Dhwayam Music</span>
-            </motion.h1>
-
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, duration: 1 }}
-              className="banner-subtext"
-            >
-              A symphony of ancient Carnatic heritage and futuristic electronic textures. 
-              We don't just perform; we redefine the boundaries of classical resonance.
-            </motion.p>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="banner-actions"
-            >
-              <div className="banner-scroll-indicator">
-                <span className="mouse-wheel"></span>
-                <span className="scroll-text">Explore Our Journey</span>
-              </div>
-            </motion.div>
-          </div>
-          
-          {/* Floating Decorative Elements */}
-          <div className="floating-element element-1"></div>
-          <div className="floating-element element-2"></div>
+      {/* 1. Fancy Hero Section */}
+      <section className="hero-section">
+        <img src={HeroBannerBg} alt="Background" className="hero-bg-image" />
+        <div className="hero-overlay"></div>
+        <div className="hero-content">
+          <motion.span 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="hero-badge"
+          >
+            THE NEW WAVE OF TRADITION
+          </motion.span>
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="hero-title"
+          >
+            About <span className="hero-dhwayam-text">Dhwayam</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="hero-description"
+          >
+            Where ancient Carnatic roots meet contemporary sonic landscapes, 
+            creating a bridge between generations and a catalyst for social change.
+          </motion.p>
         </div>
       </section>
 
