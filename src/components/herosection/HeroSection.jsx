@@ -3,7 +3,7 @@ import Footer from './Footer'
 import Navbar from './Navbar'
 import SupportText from './SupportText'
 import SloganText from './SloganText'
-import logo from '../../assets/Logo Section.png'
+import logo from '../../assets/LogoSection.png'
 
 function HeroSection({ onNavigate }) {
     return (

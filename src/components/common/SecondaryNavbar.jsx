@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../../assets/Logo Section.png';
+import Logo from '../../assets/LogoSection.png';
 import './SecondaryNavbar.css';
 
 function SecondaryNavbar({ onNavigate, isVisible }) {
