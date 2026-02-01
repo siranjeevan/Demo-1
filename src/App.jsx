@@ -8,7 +8,6 @@ import './index.css' // Ensure tailwind is loaded via index.css
 import HeroSection from './components/herosection/HeroSection'
 import About from './components/aboutpage/About'
 import SecondaryNavbar from './components/common/SecondaryNavbar'
-import Founders from './components/aboutpage/Founders'
 
 import Hero1 from './assets/Hero1.png'
 import Hero2 from './assets/Hero2.png'
@@ -103,7 +102,6 @@ function App() {
         <About isActive={currentPage === 1} />
         <OurImpact isActive={currentPage === 1} />
         <WhoWeAre isActive={currentPage === 1} />
-        <Founders isActive={currentPage === 1} />
         <OurInitiatives isActive={currentPage === 1} />
         <RecentImpact isActive={currentPage === 1} />
         <Footer />
