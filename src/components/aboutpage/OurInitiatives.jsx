@@ -12,170 +12,172 @@ function OurInitiatives({ isActive }) {
     }, [isActive]);
 
     const styles = {
-        container: {
-            position: 'relative', // Changed from fixed
-            width: '100vw',
+        section: {
+            width: '100%',
+            position: 'relative',
+            backgroundColor: '#f8fafc',
+            overflow: 'hidden',
+            padding: '70px 0',
+            fontFamily: '"Inter", sans-serif',
             minHeight: '100vh',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: '#ffffff', 
-            zIndex: 10,
-            fontFamily: '"Inter", sans-serif',
-            overflow: 'hidden',
-            opacity: 1, // Always visible
-            pointerEvents: 'auto',
         },
-        headerSection: {
+        // Common Header Styles
+        headerWrapper: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
             textAlign: 'center',
-            marginBottom: '60px', // Spacing for title
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? 'translateY(0)' : 'translateY(-20px)',
-            transition: 'all 0.8s ease',
+            position: 'relative',
+            padding: '8px 0',
+            marginBottom: '60px',
+            width: '100%',
+            flexShrink: 0,
         },
-        overline: {
-            display: 'block',
-            color: '#bae6fd', // Light Blue accent (Same as WhoWeAre)
-            fontSize: '14px',
-            fontWeight: '700',
-            letterSpacing: '4px',
+        headerDividerLine: {
+            position: 'absolute',
+            top: '50%',
+            left: 0,
+            width: '100%',
+            height: '1px',
+            backgroundColor: 'rgba(1, 78, 99, 0.05)',
+            zIndex: 0,
+        },
+        headerContent: {
+            backgroundColor: '#f8fafc',
+            padding: '0 24px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            position: 'relative',
+            zIndex: 1,
+        },
+        subHeader: {
+            color: 'rgba(1, 78, 99, 0.4)',
+            fontSize: '10px',
+            fontWeight: '900',
+            letterSpacing: '0.6em',
             textTransform: 'uppercase',
-            marginBottom: '16px',
-            textShadow: '0 2px 10px rgba(0,0,0,0.05)',
+            marginBottom: '4px',
         },
-        mainTitle: {
-            color: '#014e63', // Brand Dark Teal (Same as WhoWeAre)
-            fontSize: '60px',
+        mainHeader: {
+            color: '#014e63',
+            fontSize: 'clamp(36px, 5vw, 60px)',
             fontWeight: '900',
             textTransform: 'uppercase',
-            margin: 0,
+            letterSpacing: '-0.05em',
             lineHeight: '1',
-            letterSpacing: '-2px',
+            marginBottom: '4px',
+            fontFamily: '"Inter", sans-serif',
         },
-        gridContainer: {
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '40px',
-            maxWidth: '1200px',
-            width: '90%',
-            padding: '0 20px',
-        },
-        card: {
-            backgroundColor: '#ffffff', // White Card
-            borderRadius: '24px',
-            padding: '48px',
-            border: '1px solid #e2e8f0', // Slate 200 Border
-            boxShadow: '0 20px 40px -12px rgba(0, 0, 0, 0.05)', // Soft shadow
-            transition: 'all 0.4s ease',
-            cursor: 'default',
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? 'translateY(0)' : 'translateY(40px)',
-            position: 'relative',
-            overflow: 'hidden',
-        },
-        iconWrapper: { 
-            width: '80px',
-            height: '80px',
-            borderRadius: '50%',
+        headerFooter: {
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '32px',
-            fontSize: '32px',
+            gap: '12px',
         },
-        cardTitle: {
-            color: '#0f172a', // Dark Slate Title
+        smallDivider: {
+            width: '24px',
+            height: '1px',
+            backgroundColor: 'rgba(1, 78, 99, 0.2)',
+        },
+        tagline: {
+            color: 'rgba(1, 78, 99, 0.4)',
+            fontSize: '9px',
+            fontWeight: '700',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+        },
+        // Content Styles
+        container: {
+            maxWidth: '1200px',
+            width: '90%',
+            margin: '0 auto',
+            opacity: mounted ? 1 : 0,
+            transform: mounted ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'all 1s ease-out',
+        },
+        featuredCard: {
+            backgroundColor: '#ffffff',
+            borderRadius: '24px',
+            padding: '60px',
+            boxShadow: '0 20px 40px -12px rgba(1, 78, 99, 0.08)',
+            border: '1px solid #e2e8f0',
+            borderTop: '6px solid #0ea5e9',
+            maxWidth: '900px',
+            margin: '0 auto',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '32px',
+        },
+        featureIcon: {
+            fontSize: '64px',
+            marginBottom: '16px',
+            display: 'inline-block',
+        },
+        featureTitle: {
+            fontFamily: '"Inter", sans-serif',
             fontSize: '32px',
             fontWeight: '800',
-            marginBottom: '8px',
+            color: '#014e63',
+            margin: 0,
             letterSpacing: '-0.5px',
         },
-        cardSubtitle: {
-            color: '#64748b', // Slate 500 Subtitle
+        featureSubtitle: {
             fontSize: '14px',
             fontWeight: '700',
             textTransform: 'uppercase',
-            letterSpacing: '1px',
-            marginBottom: '24px',
-            display: 'block',
+            letterSpacing: '2px',
+            color: '#0ea5e9',
+            marginTop: '-16px', // Pull it closer to title
         },
-        cardDescription: {
-            color: '#475569', // Slate 600 Body
-            fontSize: '16px',
+        featureText: {
+            fontSize: '20px',
             lineHeight: '1.7',
+            color: '#475569',
+            maxWidth: '750px',
+            margin: '0 auto',
             fontWeight: '400',
         },
-        gradientLine: {
-            width: '60px',
-            height: '4px',
-            borderRadius: '2px',
-            marginTop: '32px',
-        }
+        featureHighlight: {
+            color: '#0f172a',
+            fontWeight: '600',
+        },
     };
 
     return (
-        <div style={styles.container}>
-            
-            {/* Header */}
-            <div style={styles.headerSection}>
-                <span style={{...styles.overline, color: '#0ea5e9'}}>Making An Impact</span>
-                <h1 style={styles.mainTitle}>Our Initiatives</h1>
+        <div style={styles.section}>
+            {/* Common Page Header */}
+            <div style={styles.headerWrapper}>
+                <div style={styles.headerDividerLine}></div>
+                <div style={styles.headerContent}>
+                    <span style={styles.subHeader}>Seed of Change</span>
+                    <h1 style={styles.mainHeader}>
+                        Our Initiatives
+                    </h1>
+                    <div style={styles.headerFooter}>
+                        <span style={styles.smallDivider}></span>
+                        <span style={styles.tagline}>Est. 2024</span>
+                        <span style={styles.smallDivider}></span>
+                    </div>
+                </div>
             </div>
 
-            {/* Grid Layout */}
-            <div style={styles.gridContainer}>
-                
-                {/* Initiative 1: Harmony for Hope */}
-                <div 
-                    style={{...styles.card, transitionDelay: '0.2s'}}
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-10px)';
-                        e.currentTarget.style.boxShadow = '0 25px 50px -12px rgba(1, 78, 99, 0.15)'; // Teal shadow
-                        e.currentTarget.style.borderColor = '#bae6fd'; // Light blue border
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = '0 20px 40px -12px rgba(0, 0, 0, 0.05)';
-                        e.currentTarget.style.borderColor = '#e2e8f0';
-                    }}
-                >
-                    <div style={{...styles.iconWrapper, background: 'linear-gradient(135deg, #e0f2fe, #bae6fd)', color: '#0284c7'}}>
-                        🎵
-                    </div>
-                    <h3 style={styles.cardTitle}>Harmony for Hope</h3>
-                    <span style={styles.cardSubtitle}>Fundraiser Concert Series</span>
-                    <p style={styles.cardDescription}>
-                        We channel our performances into fundraising efforts that support youth healthcare and health-focused nonprofits. Each concert transforms creativity into tangible support, creating real impact.
+            <div style={styles.container}>
+                <div style={styles.featuredCard}>
+                    <div style={styles.featureIcon}>🌱</div>
+                    
+                    <h2 style={styles.featureTitle}>Harmony for Hope</h2>
+                    <span style={styles.featureSubtitle}>Fundraiser Concert Series</span>
+                    
+                    <p style={styles.featureText}>
+                        Through Harmony for Hope, we channel our performances into fundraising efforts that support youth healthcare and health-focused nonprofit organizations. Each concert transforms creativity into tangible support, allowing audiences to contribute to causes that create real impact.
                     </p>
-                    <div style={{...styles.gradientLine, background: 'linear-gradient(90deg, #0284c7, transparent)'}}></div>
                 </div>
-
-                {/* Initiative 2: Together Through Music */}
-                <div 
-                    style={{...styles.card, transitionDelay: '0.4s'}}
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-10px)';
-                        e.currentTarget.style.boxShadow = '0 25px 50px -12px rgba(13, 148, 136, 0.15)'; // Teal shadow
-                        e.currentTarget.style.borderColor = '#99f6e4'; // Teal border
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'translateY(0)';
-                         e.currentTarget.style.boxShadow = '0 20px 40px -12px rgba(0, 0, 0, 0.05)';
-                        e.currentTarget.style.borderColor = '#e2e8f0';
-                    }}
-                >
-                    <div style={{...styles.iconWrapper, background: 'linear-gradient(135deg, #ccfbf1, #99f6e4)', color: '#0d9488'}}>
-                        🤝
-                    </div>
-                    <h3 style={styles.cardTitle}>Together Through Music</h3>
-                    <span style={styles.cardSubtitle}>Community Outreach Program</span>
-                    <p style={styles.cardDescription}>
-                        Bringing live music to senior centers and community spaces as a source of connection and joy. These performances are meaningful human experiences that foster emotional well-being.
-                    </p>
-                     <div style={{...styles.gradientLine, background: 'linear-gradient(90deg, #0d9488, transparent)'}}></div>
-                </div>
-
             </div>
         </div>
     );
