@@ -11,6 +11,7 @@ import AboutDetail from './components/aboutpage/AboutDetail'
 import InitiativesDetail from './components/aboutpage/InitiativesDetail'
 import ImpactDetail from './components/aboutpage/ImpactDetail'
 import EventsDetail from './components/aboutpage/EventsDetail'
+import ContactDetail from './components/aboutpage/ContactDetail'
 import SecondaryNavbar from './components/common/SecondaryNavbar'
 
 import Hero1 from './assets/Hero1.png'
@@ -87,7 +88,7 @@ function App() {
 
         {/* Content Overlay */}
         <div className="relative z-10 w-full h-full">
-            <HeroSection />
+            <HeroSection onNavigate={setCurrentPage} />
         </div>
       </div>
 
@@ -104,6 +105,7 @@ function App() {
         {/* Standalone Pages */}
         {currentPage === 2 && <WhoWeAre isActive={true} />}
         {currentPage === 3 && <InitiativesDetail />}
+        {currentPage === 4 && <ContactDetail />}
         {currentPage === 6 && <ImpactDetail />}
         {currentPage === 7 && <EventsDetail />}
 
