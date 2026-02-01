@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Logo from '../../assets/Logo Section.png';
-import BandImg from '../../assets/Hero2.png';
 
 function WhoWeAre({ isActive }) {
     const [mounted, setMounted] = useState(false);
@@ -13,221 +11,94 @@ function WhoWeAre({ isActive }) {
         }
     }, [isActive]);
 
-    const styles = {
-        container: {
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            display: 'flex',
-            backgroundColor: '#ffffff',
-            zIndex: 50,
-            fontFamily: '"Inter", sans-serif',
-            overflow: 'hidden', // Prevent scroll on main container
-            opacity: isActive ? 1 : 0,
-            pointerEvents: isActive ? 'auto' : 'none',
-            transition: 'opacity 0.8s ease',
-        },
-        leftSplit: {
-            width: '45%',
-            height: '100%',
-            position: 'relative',
-            overflow: 'hidden',
-            flexShrink: 0,
-        },
-        heroImage: {
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center',
-            transform: mounted ? 'scale(1.05)' : 'scale(1.2)',
-            transition: 'transform 10s ease-out',
-        },
-        imageOverlay: {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            background: 'linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 100%)',
-        },
-        titleOverlay: {
-            position: 'absolute',
-            bottom: '8%', // Moved down slightly
-            left: '8%',
-            zIndex: 2,
-        },
-        hugeTitle: {
-            color: '#ffffff',
-            fontSize: 'clamp(40px, 5vw, 80px)', // Responsive font size
-            lineHeight: '0.9',
-            fontWeight: '800',
-            textTransform: 'uppercase',
-            letterSpacing: '-2px',
-            margin: 0,
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'all 0.8s ease 0.2s',
-            textShadow: '0 10px 30px rgba(0,0,0,0.3)'
-        },
-        subtitle: {
-            color: '#bae6fd',
-            fontSize: '12px',
-            textTransform: 'uppercase',
-            letterSpacing: '4px',
-            marginBottom: '12px',
-            display: 'block',
-            fontWeight: '700',
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'all 0.8s ease 0.1s',
-            textShadow: '0 2px 10px rgba(0,0,0,0.3)'
-        },
-        rightSplit: {
-            width: '55%',
-            height: '100%',
-            backgroundColor: '#ffffff',
-            display: 'flex',             // Flexbox for vertical centering
-            flexDirection: 'column',
-            justifyContent: 'center',    // Center vertically
-            alignItems: 'center',
-            position: 'relative',
-            paddingTop: '60px',          // Offset for navbar
-        },
-        contentContainer: {
-            padding: '0 60px',           // Side padding
-            maxWidth: '750px',
-            width: '100%',
-            color: '#334155',
-            display: 'flex',             // Flex layout for content spacing
-            flexDirection: 'column',
-            gap: '16px',                 // Consistent gap between elements
-        },
-        dropCapParagraph: {
-            fontSize: '16px',            // Compact text size
-            lineHeight: '1.5',
-            color: '#1e293b',
-            fontWeight: '400',
-            margin: 0,
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'all 0.8s ease 0.4s',
-        },
-        dropCap: {
-            float: 'left',
-            fontSize: '48px',            // Smaller drop cap
-            lineHeight: '0.8',
-            fontWeight: '900',
-            color: '#014e63',
-            marginRight: '12px',
-            marginTop: '4px',
-        },
-        paragraph: {
-            fontSize: '15px',            // Compact text size
-            lineHeight: '1.5',
-            color: '#475569',
-            fontWeight: '400',
-            margin: 0,
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'all 0.8s ease 0.5s',
-        },
-        quoteBox: {
-            borderLeft: '3px solid #014e63',
-            paddingLeft: '20px',
-            margin: '4px 0',             // Minimal margin
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'all 0.8s ease 0.6s',
-        },
-        quoteText: {
-            fontSize: '18px',            // Smaller quote
-            fontStyle: 'italic',
-            color: '#0f172a',
-            fontFamily: 'serif',
-            lineHeight: '1.4',
-        },
-        footerCard: {
-            marginTop: '10px',
-            padding: '24px',             // Compact padding
-            background: 'linear-gradient(135deg, #f8fafc, #f1f5f9)',
-            borderRadius: '12px',
-            border: '1px solid #e2e8f0',
-            textAlign: 'center',
-            boxShadow: '0 4px 15px -5px rgba(0,0,0,0.05)',
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'all 0.8s ease 0.7s',
-        },
-        footerText: {
-            fontSize: '11px',
-            color: '#64748b',
-            marginBottom: '4px',
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-            fontWeight: '600',
-        },
-        footerHighlight: {
-            fontSize: '18px',           // Compact highlight
-            color: '#014e63',
-            fontWeight: '700',
-            lineHeight: '1.3',
-        },
-    };
-
     return (
-        <div style={styles.container}>
-            {/* Left Split - Visual Anchor */}
-            <div style={styles.leftSplit} className="hidden md:block">
-                <img src={BandImg} alt="Dhwayam Band" style={styles.heroImage} />
-                <div style={styles.imageOverlay}></div>
-                <div style={styles.titleOverlay}>
-                    <span style={styles.subtitle}>Our Story</span>
-                    <h1 style={styles.hugeTitle}>WHO<br />WE ARE</h1>
+        <div className="w-full relative bg-[#f8fafc] overflow-hidden py-32">
+            
+            <div className={`w-full max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col gap-16 transition-all duration-1000 ease-out transform ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
+                
+                {/* 1. Header (Consistent) */}
+                <div className="flex flex-col items-center justify-center text-center relative py-2 shrink-0">
+                    <div className="absolute top-1/2 left-0 w-full h-[1px] bg-[#014e63]/5 -z-10"></div>
+                    <div className="bg-[#f8fafc] px-8 flex flex-col items-center">
+                        <span className="text-[#014e63]/40 text-[10px] font-black tracking-[0.6em] uppercase mb-2">Our Journey</span>
+                        <h1 className="text-[#014e63] text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-2">
+                            Who We Are
+                        </h1>
+                    </div>
                 </div>
-            </div>
 
-            {/* Right Split - Compact Story */}
-            <div style={styles.rightSplit} className="w-full md:w-[55%]">
-                <div style={styles.contentContainer}>
+                {/* 2. Modern Bento Grid Layout */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
                     
-                    {/* Intro */}
-                    <p style={styles.dropCapParagraph}>
-                        <span style={styles.dropCap}>W</span>
-                        e are two young, passionate musicians from Seattle brought together by a shared love for Carnatic music. What began as attending and performing in traditional Carnatic kutcheris slowly grew into a deeper friendship and creative partnership.
-                    </p>
-
-                    <p style={styles.paragraph}>
-                        Over time, our shared passion evolved into something bigger—a desire to create, collaborate, and take music beyond the traditional stage.
-                    </p>
-
-                    {/* Pull Quote */}
-                    <div style={styles.quoteBox}>
-                        <p style={styles.quoteText}>
-                            "That journey led to the formation of Dhwayam, a fusion band rooted in Carnatic music and shaped by diverse musical influences."
+                    {/* Block A: The Origin (White Card) */}
+                    <div className="md:col-span-7 bg-white p-8 md:p-12 rounded-[2.5rem] shadow-sm border border-slate-100 hover:shadow-md transition-shadow duration-500 flex flex-col gap-6">
+                        <div className="w-12 h-12 rounded-full bg-[#e0f2fe] flex items-center justify-center text-[#0284c7] text-xl">🌱</div>
+                        <h3 className="text-2xl font-bold text-[#0f172a]">The Beginning</h3>
+                        <p className="text-lg text-[#334155] leading-relaxed">
+                            We are two young, passionate musicians from Seattle brought together by a shared love for Carnatic music. What began as attending and performing in traditional Carnatic kutcheris slowly grew into a deeper friendship and creative partnership.
                         </p>
                     </div>
 
-                    <p style={styles.paragraph}>
-                        Starting with vocal and violin, we began jamming simply for the joy of making music. As our sound evolved, we started collaborating with other young musicians, blending styles, cultures, and perspectives.
-                    </p>
+                    {/* Block B: The Quote (Dark Teal Card - Visual Anchor) */}
+                    <div className="md:col-span-5 md:row-span-2 bg-[#014e63] p-8 md:p-12 rounded-[2.5rem] shadow-2xl flex flex-col justify-between text-white relative overflow-hidden group">
+                        {/* Decorative Blob */}
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#0ea5e9] rounded-full blur-[80px] opacity-20 group-hover:opacity-30 transition-opacity"></div>
+                        
+                        <div className="relative z-10">
+                            <span className="text-[#bae6fd] text-6xl font-serif leading-none">"</span>
+                            <p className="text-2xl md:text-3xl font-serif italic leading-tight mt-[-20px] mb-8">
+                                That journey led to the formation of Dhwayam, a fusion band rooted in Carnatic music.
+                            </p>
+                        </div>
+                        
+                        <div className="relative z-10 border-t border-white/10 pt-8">
+                            <span className="text-xs font-bold tracking-widest uppercase text-[#bae6fd]">Our Turning Point</span>
+                        </div>
+                    </div>
 
-                    <p style={styles.paragraph}>
-                        Today, <strong style={{ color: '#014e63', fontWeight: 700 }}>Dhwayam</strong> fuses the timeless beauty of Indian Carnatic music with contemporary sounds to create performances that inspire, connect, and uplift communities.
-                    </p>
-
-                    {/* Closing Statement */}
-                    <div style={styles.footerCard}>
-                        <p style={styles.footerText}>Our Philosophy</p>
-                        <p style={styles.footerHighlight}>
-                            For us, music is more than performance.<br />
-                            It is a way to serve, connect, and give back.
+                    {/* Block C: The Evolution (Light Blue Card) */}
+                    <div className="md:col-span-7 bg-[#f0f9ff] p-8 md:p-12 rounded-[2.5rem] border border-[#bae6fd]/30 hover:shadow-md transition-shadow duration-500 flex flex-col gap-6">
+                         <div className="w-12 h-12 rounded-full bg-[#0ea5e9] flex items-center justify-center text-white text-xl">🚀</div>
+                        <h3 className="text-2xl font-bold text-[#0c4a6e]">The Evolution</h3>
+                        <p className="text-lg text-[#334155] leading-relaxed">
+                             Starting with vocal and violin, we began jamming simply for the joy of making music. As our sound evolved, we started collaborating with other young musicians, blending styles, cultures, and perspectives to create something entirely new.
                         </p>
                     </div>
-                    
+
                 </div>
+
+                {/* 3. Bottom Full Width Banner - The Present */}
+                <div className="w-full bg-white p-10 md:p-14 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                    <div className="flex-1">
+                         <span className="text-[#0ea5e9] text-sm font-bold tracking-widest uppercase mb-2 block">Today</span>
+                         <h2 className="text-3xl md:text-5xl font-black text-[#0f172a] mb-6 leading-tight">
+                            Creating Impact <br/> Through Sound.
+                         </h2>
+                         <p className="text-lg text-[#475569] leading-relaxed">
+                            <strong className="text-[#014e63]">Dhwayam</strong> fuses the timeless beauty of Indian Carnatic music with contemporary sounds to create performances that inspire, connect, and uplift communities.
+                         </p>
+                    </div>
+                    
+                    {/* Mission Badge/Circle */}
+                    <div className="shrink-0 relative w-48 h-48 flex items-center justify-center">
+                        <div className="absolute inset-0 border-2 border-dashed border-[#cbd5e1] rounded-full animate-spin-slow"></div>
+                        <div className="text-center">
+                            <span className="block text-3xl font-black text-[#014e63]">Mission</span>
+                            <span className="text-xs font-bold text-[#64748b] uppercase tracking-wider mt-1 block">Serve & Connect</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+             <style>{`
+                .animate-spin-slow {
+                    animation: spin 10s linear infinite;
+                }
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+            `}</style>
         </div>
     );
 }

@@ -13,22 +13,19 @@ function OurInitiatives({ isActive }) {
 
     const styles = {
         container: {
-            position: 'fixed',
-            top: 0,
-            left: 0,
+            position: 'relative', // Changed from fixed
             width: '100vw',
-            height: '100vh',
+            minHeight: '100vh',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: '#ffffff', // Matched White Theme
-            zIndex: 50,
+            backgroundColor: '#ffffff', 
+            zIndex: 10,
             fontFamily: '"Inter", sans-serif',
             overflow: 'hidden',
-            opacity: isActive ? 1 : 0,
-            pointerEvents: isActive ? 'auto' : 'none',
-            transition: 'opacity 0.8s ease',
+            opacity: 1, // Always visible
+            pointerEvents: 'auto',
         },
         headerSection: {
             textAlign: 'center',

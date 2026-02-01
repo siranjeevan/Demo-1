@@ -5,9 +5,9 @@ import Hero1 from '../../assets/Hero1.png'
 
 function AboutPage({ isActive }) {
     return (
-        <div className="fixed inset-0 w-screen h-screen bg-[#f8fafc] z-50 flex items-center justify-center">
+        <div className="w-full min-h-screen bg-[#f8fafc] flex items-center justify-center pb-20 relative" style={{ paddingTop: '60px' }}>
             
-            <div className={`w-full max-w-7xl mx-auto h-full flex flex-col gap-4 pt-28 md:pt-32 px-6 md:px-12 pb-6 md:pb-8 transition-all duration-1000 ease-out transform ${isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-95 translate-y-12'}`}>
+            <div className={`w-full max-w-7xl mx-auto flex flex-col gap-8 px-6 md:px-12 pointer-events-auto transition-all duration-1000 ease-out transform ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                 
                 {/* 0. Common Page Header - Elegant & Clear */}
                 <div className="flex flex-col items-center justify-center text-center relative py-2 shrink-0">

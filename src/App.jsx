@@ -25,20 +25,21 @@ function App() {
 
   useEffect(() => {
     const handleWheel = (e) => {
+       // Only handle transition between Hero (0) and Main Content (1)
       if (isTransitioning) return
 
-      if (e.deltaY > 0) {
-        // Scrolling down
-        if (currentPage < 3) {
+      if (e.deltaY > 0 && currentPage === 0) {
+        // Scrolling down from Hero -> Go to Main Content
+        setIsTransitioning(true)
+        setCurrentPage(1)
+        setTimeout(() => setIsTransitioning(false), 800)
+      } else if (e.deltaY < 0 && currentPage === 1) {
+        // Scrolling up from Main Content -> Go back to Hero
+        // ONLY if we are at the very top of the scroll
+        const mainContent = document.getElementById('main-scroll-container');
+        if (mainContent && mainContent.scrollTop === 0) {
             setIsTransitioning(true)
-            setCurrentPage(prev => prev + 1)
-            setTimeout(() => setIsTransitioning(false), 800)
-        }
-      } else if (e.deltaY < 0) {
-        // Scrolling up
-        if (currentPage > 0) {
-            setIsTransitioning(true)
-            setCurrentPage(prev => prev - 1)
+            setCurrentPage(0)
             setTimeout(() => setIsTransitioning(false), 800)
         }
       }
@@ -50,7 +51,7 @@ function App() {
 
   return (
     <>
-      {/* Universal Nav for Inner Pages */}
+      {/* Universal Nav */}
       <div className={`transition-all duration-700 ease-in-out z-[100] ${
         currentPage !== 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}>
@@ -79,31 +80,25 @@ function App() {
         </div>
       </div>
 
-      {/* About Page */}
+      {/* Main Content Container (About -> Who We Are -> Initiatives) */}
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
       <div 
-        className={`transition-all duration-700 ease-in-out ${
-          currentPage === 1 ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        id="main-scroll-container"
+        className={`fixed inset-0 w-full h-full bg-white z-50 overflow-y-auto no-scrollbar transition-transform duration-700 ease-in-out ${
+          currentPage === 1 ? 'translate-y-0' : 'translate-y-[100vh]'
         }`}
       >
         <AboutPage isActive={currentPage === 1} />
-      </div>
-
-      {/* Who We Are Page */}
-      <div 
-        className={`transition-all duration-700 ease-in-out ${
-          currentPage === 2 ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        <WhoWeAre isActive={currentPage === 2} />
-      </div>
-
-      {/* Our Initiatives Page */}
-      <div 
-        className={`transition-all duration-700 ease-in-out ${
-          currentPage === 3 ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        <OurInitiatives isActive={currentPage === 3} />
+        <WhoWeAre isActive={currentPage === 1} />
+        <OurInitiatives isActive={currentPage === 1} />
       </div>
     </>
   )
