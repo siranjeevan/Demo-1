@@ -7,13 +7,14 @@ import React, { useState, useEffect } from 'react'
 import './index.css' // Ensure tailwind is loaded via index.css
 import HeroSection from './components/herosection/HeroSection'
 import About from './components/aboutpage/About'
+import AboutDetail from './components/aboutpage/AboutDetail'
 import SecondaryNavbar from './components/common/SecondaryNavbar'
 
 import Hero1 from './assets/Hero1.png'
 import Hero2 from './assets/Hero2.png'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState(0) // 0 = Hero, 1 = About, 2 = Who We Are, 3 = Initiatives
+  const [currentPage, setCurrentPage] = useState(0) // 0 = Hero, 1 = About, 2 = Who We Are, 3 = Initiatives, 4 = Contact
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [currentHeroImage, setCurrentHeroImage] = useState(0)
   const heroImages = [Hero1, Hero2]
@@ -28,17 +29,17 @@ function App() {
 
   useEffect(() => {
     const handleWheel = (e) => {
-       // Only handle transition between Hero (0) and Main Content (1)
+      // Only handle transition between Hero (0) and Main Content
       if (isTransitioning) return
 
-      if (e.deltaY > 0 && currentPage === 0) {
-        // Scrolling down from Hero -> Go to Main Content
+      if (e.deltaY > 10 && currentPage === 0) {
+        // Scrolling down from Hero -> Go to Landing Dashboard (index 5)
         setIsTransitioning(true)
-        setCurrentPage(1)
+        setCurrentPage(5)
         setTimeout(() => setIsTransitioning(false), 800)
-      } else if (e.deltaY < 0 && currentPage === 1) {
-        // Scrolling up from Main Content -> Go back to Hero
-        // ONLY if we are at the very top of the scroll
+      } else if (e.deltaY < -10 && currentPage === 5) {
+        // Scrolling up ONLY from the Dashboard (5) -> Go back to Hero
+        // This ensures standalone pages like AboutDetail stay put.
         const mainContent = document.getElementById('main-scroll-container');
         if (mainContent && mainContent.scrollTop === 0) {
             setIsTransitioning(true)
@@ -48,8 +49,12 @@ function App() {
       }
     }
 
-    window.addEventListener('wheel', handleWheel)
-    return () => window.removeEventListener('wheel', handleWheel)
+    // Capture wheel events on window
+    window.addEventListener('wheel', handleWheel, { passive: true })
+    
+    return () => {
+      window.removeEventListener('wheel', handleWheel)
+    }
   }, [currentPage, isTransitioning])
 
   return (
@@ -83,27 +88,31 @@ function App() {
         </div>
       </div>
 
-      {/* Main Content Container (About -> Who We Are -> Initiatives -> Impact) */}
-      <style>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
+      {/* Main Content Container */}
       <div 
         id="main-scroll-container"
-        className={`fixed inset-0 w-full h-full bg-white z-50 overflow-y-auto no-scrollbar transition-transform duration-700 ease-in-out ${
-          currentPage === 1 ? 'translate-y-0' : 'translate-y-[100vh]'
+        className={`fixed inset-0 w-full h-full bg-white z-50 overflow-y-auto hide-scrollbar transition-transform duration-700 ease-in-out ${
+          currentPage !== 0 ? 'translate-y-0' : 'translate-y-[100vh]'
         }`}
       >
-        <About isActive={currentPage === 1} />
-        <OurImpact isActive={currentPage === 1} />
-        <WhoWeAre isActive={currentPage === 1} />
-        <OurInitiatives isActive={currentPage === 1} />
-        <RecentImpact isActive={currentPage === 1} />
+        {/* Separate About Page */}
+        {currentPage === 1 && <AboutDetail />}
+
+        {/* Standalone Pages */}
+        {currentPage === 2 && <WhoWeAre isActive={true} />}
+        {currentPage === 3 && <OurInitiatives isActive={true} />}
+
+        {/* Landing Dashboard View (Stacked) */}
+        {currentPage === 5 && (
+          <>
+            <About isActive={true} />
+            <OurImpact isActive={true} />
+            <WhoWeAre isActive={true} />
+            <OurInitiatives isActive={true} />
+            <RecentImpact isActive={true} />
+          </>
+        )}
+        
         <Footer />
       </div>
     </>

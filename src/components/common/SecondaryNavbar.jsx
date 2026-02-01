@@ -35,6 +35,7 @@ function SecondaryNavbar({ onNavigate, isVisible }) {
                 {['Home', 'About', 'Who We Are', 'Initiatives', 'Contact'].map((item, index) => (
                     <button
                         key={item}
+                        onClick={() => onNavigate(index)}
                         style={{
                             background: 'none',
                             border: 'none',
