@@ -5,10 +5,46 @@ function OurImpact({ isActive }) {
     const [animatedValues, setAnimatedValues] = useState([0, 0, 0, 0]);
 
     const stats = [
-        { id: 1, value: 15000, label: "Total Funds Raised", prefix: "$", suffix: "+" },
-        { id: 2, value: 25, label: "Events Completed", prefix: "", suffix: "+" },
-        { id: 3, value: 500, label: "Communities Reached", prefix: "", suffix: "+" },
-        { id: 4, value: 3, label: "Ongoing Initiatives", prefix: "", suffix: "" },
+        { 
+            id: 1, 
+            value: 15000, 
+            label: "Total Funds Raised", 
+            prefix: "$", 
+            suffix: "+", 
+            icon: (
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            )
+        },
+        { 
+            id: 2, 
+            value: 500, 
+            label: "Lives Directly Impacted", 
+            prefix: "", 
+            suffix: "+", 
+            icon: (
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            )
+        },
+        { 
+            id: 3, 
+            value: 25, 
+            label: "Events Completed", 
+            prefix: "", 
+            suffix: "+", 
+            icon: (
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            )
+        },
+        { 
+            id: 4, 
+            value: 12, 
+            label: "Partner Organizations", 
+            prefix: "", 
+            suffix: "", 
+            icon: (
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+            )
+        },
     ];
 
     useEffect(() => {
@@ -23,7 +59,7 @@ function OurImpact({ isActive }) {
     useEffect(() => {
         if (mounted) {
             stats.forEach((stat, index) => {
-                const duration = 2500;
+                const duration = 2000;
                 const startTime = Date.now();
                 const endValue = stat.value;
 
@@ -52,7 +88,7 @@ function OurImpact({ isActive }) {
     // Animation Helper
     const getAnimation = (delay) => ({
         opacity: mounted ? 1 : 0,
-        transform: mounted ? 'translateY(0)' : 'translateY(30px)',
+        transform: mounted ? 'translateY(0)' : 'translateY(20px)',
         transition: `all 0.8s ease-out ${delay}ms`,
     });
 
@@ -60,157 +96,125 @@ function OurImpact({ isActive }) {
         section: {
             width: '100%',
             position: 'relative',
-            backgroundColor: '#f8fafc',
+            backgroundColor: 'rgba(1, 78, 99, 0.1)', // Increased opacity for visibility
             overflow: 'hidden',
-            padding: '70px 0',
+            padding: '50px 0',
             fontFamily: '"Inter", sans-serif',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            // No min-height 100vh since it's a stats section, maybe fit content or at least significant padding
-            minHeight: '60vh', 
-        },
-        headerWrapper: {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            textAlign: 'center',
-            position: 'relative',
-            padding: '8px 0',
-            marginBottom: '80px',
-            width: '100%',
-        },
-        headerDividerLine: {
-            position: 'absolute',
-            top: '50%',
-            left: 0,
-            width: '100%',
-            height: '1px',
-            backgroundColor: 'rgba(1, 78, 99, 0.05)',
-            zIndex: 0,
-        },
-        headerContent: {
-            backgroundColor: '#f8fafc',
-            padding: '0 24px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            position: 'relative',
-            zIndex: 1,
-        },
-        subHeader: {
-            color: 'rgba(1, 78, 99, 0.4)',
-            fontSize: '10px',
-            fontWeight: '900',
-            letterSpacing: '0.6em',
-            textTransform: 'uppercase',
-            marginBottom: '4px',
-        },
-        mainHeader: {
-            color: '#014e63',
-            fontSize: 'clamp(36px, 5vw, 60px)',
-            fontWeight: '900',
-            textTransform: 'uppercase',
-            letterSpacing: '-0.05em',
-            lineHeight: '1',
-            marginBottom: '4px',
-            fontFamily: '"Inter", sans-serif',
-        },
-        headerFooter: {
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-        },
-        smallDivider: {
-            width: '24px',
-            height: '1px',
-            backgroundColor: 'rgba(1, 78, 99, 0.2)',
-        },
-        tagline: {
-            color: 'rgba(1, 78, 99, 0.4)',
-            fontSize: '9px',
-            fontWeight: '700',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
+            minHeight: '40vh',
         },
         container: {
             width: '100%',
             maxWidth: '1200px',
             padding: '0 24px',
-        },
-        statsGrid: {
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '30px',
-        },
-        statBox: {
-            backgroundColor: 'white',
-            padding: '48px 32px',
-            borderRadius: '32px',
-            textAlign: 'center',
-            boxShadow: '0 20px 50px -20px rgba(0,0,0,0.1)',
-            border: '1px solid #f1f5f9',
+            position: 'relative',
+            zIndex: 10,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'transform 0.3s ease',
         },
+
+        // Header Section
+        headerWrapper: {
+            textAlign: 'center',
+            marginBottom: '60px',
+        },
+        mainHeader: {
+            fontFamily: '"Playfair Display", serif',
+            fontSize: '42px',
+            fontWeight: '700',
+            color: '#014e63', // Brand Teal
+            marginBottom: '16px',
+            letterSpacing: '-0.5px',
+        },
+        subHeader: {
+            fontSize: '18px',
+            color: 'rgba(1, 78, 99, 0.7)', // Lighter Brand Teal
+            fontWeight: '400',
+            maxWidth: '600px',
+            margin: '0 auto',
+            lineHeight: '1.5',
+        },
+        
+        // Grid Layout
+        grid: {
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            width: '100%',
+            gap: '40px',
+        },
+
+        // Stat Item
+        statItem: {
+            flex: '1',
+            minWidth: '200px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            textAlign: 'center',
+        },
+
+        iconWrapper: {
+            color: '#014e63', // Brand Teal
+            marginBottom: '24px',
+            height: '48px',
+            display: 'flex',
+            alignItems: 'center',
+        },
+
+        // Typography
         statValue: {
-            fontSize: '48px', // Larger font for separate page
-            fontWeight: '900',
-            color: '#014e63',
+            fontSize: '42px',
+            fontWeight: '800', 
+            color: '#014e63', // Brand Teal
             marginBottom: '12px',
-            lineHeight: '1',
             fontVariantNumeric: 'tabular-nums',
+            letterSpacing: '-1px',
         },
         statLabel: {
-            fontSize: '13px',
-            fontWeight: '800',
-            color: '#64748b',
-            textTransform: 'uppercase',
-            letterSpacing: '2px',
-        }
+            fontSize: '16px',
+            fontWeight: '500',
+            color: '#64748b', // Slate 500
+            lineHeight: '1.4',
+        },
     };
 
     return (
         <div style={styles.section}>
              <style>{`
                 @media (max-width: 900px) {
-                    .stats-grid-responsive {
+                    .impact-grid-responsive {
+                        display: grid !important;
                         grid-template-columns: repeat(2, 1fr) !important;
-                        gap: 16px !important;
+                        justify-items: center;
                     }
                 }
                 @media (max-width: 500px) {
-                    .stats-grid-responsive {
+                    .impact-grid-responsive {
                         grid-template-columns: 1fr !important;
-                    }
-                    .stat-box {
-                        padding: 30px 20px !important;
                     }
                 }
             `}</style>
-
-            {/* Common Header */}
-            <div style={{...styles.headerWrapper, ...getAnimation(0)}}>
-                <div style={styles.headerDividerLine}></div>
-                <div style={styles.headerContent}>
-                    <span style={styles.subHeader}>By The Numbers</span>
-                    <h1 style={styles.mainHeader}>Our Impact</h1>
-                    <div style={styles.headerFooter}>
-                        <span style={styles.smallDivider}></span>
-                        <span style={styles.tagline}>Est. 2024</span>
-                        <span style={styles.smallDivider}></span>
-                    </div>
-                </div>
-            </div>
-
+            
             <div style={styles.container}>
-                <div style={{...styles.statsGrid, ...getAnimation(200)}} className="stats-grid-responsive">
+                
+                <div style={styles.grid} className="impact-grid-responsive">
                     {stats.map((stat, index) => (
-                        <div key={stat.id} style={styles.statBox} className="stat-box">
+                        <div 
+                            key={stat.id} 
+                            style={{...styles.statItem, ...getAnimation(index * 150 + 200)}}
+                        >
+                            {/* Icon */}
+                            <div style={styles.iconWrapper}>
+                                {stat.icon}
+                            </div>
+                            
+                            {/* Data */}
                             <span style={styles.statValue}>
                                 {stat.prefix}{animatedValues[index].toLocaleString()}{stat.suffix}
                             </span>

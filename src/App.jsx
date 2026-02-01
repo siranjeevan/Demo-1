@@ -1,5 +1,8 @@
 import OurInitiatives from './components/aboutpage/OurInitiatives'
 import WhoWeAre from './components/aboutpage/WhoWeAre'
+import OurImpact from './components/aboutpage/OurImpact'
+import RecentImpact from './components/aboutpage/RecentImpact'
+import Footer from './components/common/Footer'
 import React, { useState, useEffect } from 'react'
 import './index.css' // Ensure tailwind is loaded via index.css
 import HeroSection from './components/herosection/HeroSection'
@@ -80,7 +83,7 @@ function App() {
         </div>
       </div>
 
-      {/* Main Content Container (About -> Who We Are -> Initiatives) */}
+      {/* Main Content Container (About -> Who We Are -> Initiatives -> Impact) */}
       <style>{`
         .no-scrollbar::-webkit-scrollbar {
           display: none;
@@ -97,8 +100,11 @@ function App() {
         }`}
       >
         <AboutPage isActive={currentPage === 1} />
+        <OurImpact isActive={currentPage === 1} />
         <WhoWeAre isActive={currentPage === 1} />
         <OurInitiatives isActive={currentPage === 1} />
+        <RecentImpact isActive={currentPage === 1} />
+        <Footer />
       </div>
     </>
   )
