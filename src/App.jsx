@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './index.css' // Ensure tailwind is loaded via index.css
 import HeroSection from './components/herosection/HeroSection'
 import AboutPage from './components/aboutpage/AboutPage'
+import SecondaryNavbar from './components/common/SecondaryNavbar'
 
 import Hero1 from './assets/Hero1.png'
 import Hero2 from './assets/Hero2.png'
@@ -43,6 +44,13 @@ function App() {
 
   return (
     <>
+      {/* Universal Nav for Inner Pages */}
+      <div className={`transition-all duration-700 ease-in-out z-[100] ${
+        currentPage !== 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}>
+        <SecondaryNavbar onNavigate={setCurrentPage} />
+      </div>
+
       <div 
         className={`w-full h-full rounded-3xl border-[0px] border-[#014e63] flex flex-col relative transition-all duration-700 ease-in-out overflow-hidden ${
           currentPage === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
